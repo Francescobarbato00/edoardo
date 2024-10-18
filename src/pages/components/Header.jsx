@@ -8,11 +8,11 @@ const Header = () => {
       <div className="bg-transparent flex justify-end items-center py-2 px-4 space-x-6 text-white text-sm">
         <div className="flex items-center space-x-1">
           <span>📍</span>
-          <span>Via don zano, 4/a, Vitinia (RM)</span>
+          <span>Via Don Zano, 4/a, Vitinia (RM)</span>
         </div>
         <div className="flex items-center space-x-1">
           <span>📞</span>
-          <span>011 192 10 639</span>
+          <span>011 192 10 639 23</span>
         </div>
         <div className="flex items-center space-x-1">
           <span>✉️</span>
