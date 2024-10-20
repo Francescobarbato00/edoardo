@@ -19,7 +19,7 @@ const CertificationsSection = () => {
           {/* ISO Text */}
           <div className="max-w-md">
             <p className="text-gray-900 text-lg">
-              La norma ISO 9001 definisce i requisiti minimi che il Sistema di Gestione per la Qualità di un’organizzazione deve dimostrare di soddisfare per garantire il livello di qualità di prodotto e servizio che dichiara di possedere con sé stessa e con il mercato.
+              La norma ISO 9001 definisce i requisiti minimi che il Sistema di Gestione per la Qualità di un’organizzazione deve dimostrare di soddisfare per garantire il livello di qualità di prodotto e servizio che dichiara di possedere con sé stessa e con il mercato..
             </p>
           </div>
         </div>
