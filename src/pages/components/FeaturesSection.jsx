@@ -56,7 +56,7 @@ const FeaturesSection = () => {
               </h3>
             </div>
             <p className="text-[15px] text-[#aaaaaa] font-lato leading-[28px] mt-2">
-              Edilges  si distingue per la sua tempestività nell’esecuzione dei lavori, garantendo risultati rapidi senza compromettere la qualità.
+              EDILGES  si distingue per la sua tempestività nell’esecuzione dei lavori, garantendo risultati rapidi senza compromettere la qualità.
             </p>
           </div>
         </div>
