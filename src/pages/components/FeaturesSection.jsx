@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 const FeaturesSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Aggiungere un delay all'animazione per farla partire
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, 500);
+
+    return () => clearTimeout(timeout); // Pulisce il timeout se il componente viene smontato
+  }, []);
+
   return (
     <section className="bg-[#262626] text-white py-16">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Feature 1 */}
-          <div className="flex flex-col items-start text-left">
+          <div className={`flex flex-col items-start text-left transform transition-all duration-1000 ease-out ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
             <div className="flex items-center">
               <Image
                 src="/icon-1.png" // Percorso aggiornato per l'immagine icon-1.png
@@ -25,7 +36,7 @@ const FeaturesSection = () => {
           </div>
 
           {/* Feature 2 */}
-          <div className="flex flex-col items-start text-left">
+          <div className={`flex flex-col items-start text-left transform transition-all duration-1000 ease-out ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
             <div className="flex items-center">
               <Image
                 src="/icon-2.png" // Percorso aggiornato per l'immagine icon-2.png
@@ -43,7 +54,7 @@ const FeaturesSection = () => {
           </div>
 
           {/* Feature 3 */}
-          <div className="flex flex-col items-start text-left">
+          <div className={`flex flex-col items-start text-left transform transition-all duration-1000 ease-out ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
             <div className="flex items-center">
               <Image
                 src="/icon-3.png" // Percorso aggiornato per l'immagine icon-3.png

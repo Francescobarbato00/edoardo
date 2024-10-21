@@ -43,3 +43,17 @@ body {
 .font-lato {
   font-family: 'Lato', sans-serif;
 }
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px); /* Parte da sotto */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Si muove verso l'alto al centro */
+  }
+}
+
+.animate-fade-slide-in {
+  animation: fadeSlideIn 1s ease-in-out forwards;
+}
