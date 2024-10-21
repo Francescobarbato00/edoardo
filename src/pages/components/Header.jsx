@@ -10,15 +10,15 @@ const Header = () => {
       <div className="bg-transparent flex justify-end items-center py-2 px-4 space-x-8 text-white text-[15px] leading-[24px] font-normal" style={{ fontFamily: 'Lato, sans-serif' }}>
         <div className="flex items-center space-x-1">
           <FontAwesomeIcon icon={faMapMarkerAlt} className="text-yellow-500" />
-          <span>Via Alessandro Antonelli, 4/a, 10093 Collegno (TO)</span>
+          <span>Via di Vitinia , 100140 Vitinia (RM)</span>
         </div>
         <div className="flex items-center space-x-1">
           <FontAwesomeIcon icon={faPhoneAlt} className="text-yellow-500" />
-          <span>011 192 10 639</span>
+          <span>013 123 12 123</span>
         </div>
         <div className="flex items-center space-x-1">
           <FontAwesomeIcon icon={faEnvelope} className="text-yellow-500" />
-          <span>info@edilcompanysas.it</span>
+          <span>info@edilges.it</span>
         </div>
       </div>
 
