@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 const Hero = () => {
   // Lista dei testi
   const texts = [
-    "RIFACIMENTO TETTI CIVILI E INDUSTRIALI",
-    "RISTRUTTURAZIONE DI INTERNI",
+    "BOCCHINI E CONTRO SOFFITTI",
+    "RISTRUTTURAZIONE E BOCCHINI",
     "MANUTENZIONE E GLOBAL SERVICE"
   ];
 
