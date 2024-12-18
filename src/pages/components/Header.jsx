@@ -35,6 +35,17 @@ const Header = () => {
         {/* Logo Animato */}
         <div className="text-yellow-500 text-4xl font-extrabold tracking-wider animate-fade-slide-in">
           EDILGES
+          {/* Aggiunta info solo su mobile */}
+          <div className="block md:hidden mt-2 text-gray-700 text-sm">
+            <div className="flex items-center space-x-2">
+              <FontAwesomeIcon icon={faMapMarkerAlt} className="text-yellow-500" />
+              <span>Via di Vitinia, 100140 Vitinia (RM)</span>
+            </div>
+            <div className="flex items-center space-x-2 mt-1">
+              <FontAwesomeIcon icon={faPhoneAlt} className="text-yellow-500" />
+              <a href="tel:01312312123" className="hover:text-yellow-500">013 123 12 123</a>
+            </div>
+          </div>
         </div>
 
         {/* Desktop Navigation */}
