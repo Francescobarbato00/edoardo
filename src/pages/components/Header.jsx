@@ -32,18 +32,22 @@ const Header = () => {
 
       {/* Main Navigation */}
       <div className="container mx-auto px-6 py-5 flex justify-between items-center">
-        {/* Logo Animato */}
+        {/* Logo */}
         <div className="text-yellow-500 text-4xl font-extrabold tracking-wider animate-fade-slide-in">
           EDILGES
-          {/* Aggiunta info solo su mobile */}
-          <div className="block md:hidden mt-2 text-gray-700 text-sm">
+          {/* Sezione aggiuntiva per mobile */}
+          <div className="block md:hidden mt-2 text-gray-700 text-sm space-y-1">
             <div className="flex items-center space-x-2">
               <FontAwesomeIcon icon={faMapMarkerAlt} className="text-yellow-500" />
               <span>Via di Vitinia, 100140 Vitinia (RM)</span>
             </div>
-            <div className="flex items-center space-x-2 mt-1">
+            <div className="flex items-center space-x-2">
               <FontAwesomeIcon icon={faPhoneAlt} className="text-yellow-500" />
-              <a href="tel:01312312123" className="hover:text-yellow-500">013 123 12 123</a>
+              <a href="tel:01312312123" className="hover:text-yellow-500 transition">013 123 12 123</a>
+            </div>
+            <div className="flex items-center space-x-2">
+              <FontAwesomeIcon icon={faEnvelope} className="text-yellow-500" />
+              <a href="mailto:info@edilges.it" className="hover:text-yellow-500 transition">info@edilges.it</a>
             </div>
           </div>
         </div>
