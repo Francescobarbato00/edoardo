@@ -56,9 +56,9 @@ const Header = () => {
         <nav className="hidden md:flex space-x-10 text-gray-700 text-lg font-semibold animate-slide-down">
           {[
             { href: "/", label: "Home" },
-            { href: "/chi-siamo", label: "Chi siamo" },
-            { href: "/servizi", label: "Servizi" },
-            { href: "/contattaci", label: "Contattaci" },
+            { href: "/about", label: "Chi siamo" },
+            { href: "/services", label: "Servizi" },
+            { href: "/contact", label: "Contattaci" },
           ].map((link) => (
             <Link
               key={link.href}
@@ -103,9 +103,9 @@ const Header = () => {
           <nav className="flex flex-col space-y-8 text-2xl font-bold text-center">
             {[
               { href: "/", label: "Home" },
-              { href: "/chi-siamo", label: "Chi siamo" },
-              { href: "/servizi", label: "Servizi" },
-              { href: "/contattaci", label: "Contattaci" },
+              { href: "/about", label: "Chi siamo" },
+              { href: "/services", label: "Servizi" },
+              { href: "/contact", label: "Contattaci" },
             ].map((link) => (
               <Link
                 key={link.href}
