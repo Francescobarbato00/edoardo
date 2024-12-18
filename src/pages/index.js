@@ -10,13 +10,14 @@ import Testimonials from './components/Testimonials';
 import PartnersSection from './components/PartnersSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import ChatBot from './components/ChatBot'; // Import del ChatBot
 
 export default function Home() {
   return (
     <div>
       <Head>
-        <title>EDIL Company</title>
-        <meta name="description" content="Riqualificazioni energetiche" />
+        <title>Edilges - Home</title>
+        <meta name="description" content="Edilges - Impresa Edile" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -26,27 +27,35 @@ export default function Home() {
       {/* Hero Section */}
       <Hero />
 
+      {/* Features Section */}
       <FeaturesSection />
 
+      {/* Renovation Section */}
       <RenovationSection />
 
+      {/* Services Section */}
       <ServicesSection />
 
+      {/* Certifications Section */}
       <CertificationsSection />
 
-
+      {/* Works Gallery */}
       <WorksGallery />
 
-
+      {/* Testimonials */}
       <Testimonials />
 
-
+      {/* Partners Section */}
       <PartnersSection />
 
+      {/* Contact Section */}
       <ContactSection />
 
+      {/* Footer */}
       <Footer />
 
+      {/* ChatBot */}
+      <ChatBot />
     </div>
   );
 }

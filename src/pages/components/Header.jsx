@@ -1,64 +1,109 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt, faPhoneAlt, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt, faPhoneAlt, faEnvelope, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false); // Stato per controllare il menu mobile
+
   return (
-    <header className="absolute top-0 left-0 w-full z-50">
+    <header className="bg-white top-0 left-0 w-full z-50 shadow-lg">
       {/* Top Bar */}
-      <div className="bg-transparent flex justify-end items-center py-2 px-4 space-x-8 text-white text-[15px] leading-[24px] font-normal" style={{ fontFamily: 'Lato, sans-serif' }}>
-        <div className="flex items-center space-x-1">
-          <FontAwesomeIcon icon={faMapMarkerAlt} className="text-yellow-500" />
-          <span>Via di Vitinia , 100140 Vitinia (RM)</span>
+      <div className="bg-gray-100 hidden md:flex justify-start items-center py-4 px-8 text-gray-700 text-base font-medium">
+        <div className="flex items-center space-x-3 mr-8">
+          <FontAwesomeIcon icon={faMapMarkerAlt} className="text-yellow-500 text-lg" />
+          <span className="hover:text-yellow-500 transition duration-300 cursor-pointer">
+            Via di Vitinia, 100140 Vitinia (RM)
+          </span>
         </div>
-        <div className="flex items-center space-x-1">
-          <FontAwesomeIcon icon={faPhoneAlt} className="text-yellow-500" />
-          <span>013 123 12 123</span>
+        <div className="flex items-center space-x-3 mr-8">
+          <FontAwesomeIcon icon={faPhoneAlt} className="text-yellow-500 text-lg" />
+          <a href="tel:01312312123" className="hover:text-yellow-500 transition duration-300 cursor-pointer">
+            013 123 12 123
+          </a>
         </div>
-        <div className="flex items-center space-x-1">
-          <FontAwesomeIcon icon={faEnvelope} className="text-yellow-500" />
-          <span>info@edilges.it</span>
+        <div className="flex items-center space-x-3">
+          <FontAwesomeIcon icon={faEnvelope} className="text-yellow-500 text-lg" />
+          <a href="mailto:info@edilges.it" className="hover:text-yellow-500 transition duration-300 cursor-pointer">
+            info@edilges.it
+          </a>
         </div>
       </div>
 
       {/* Main Navigation */}
-      <div className="container mx-auto px-8 py-6 flex justify-between items-center border-b border-gray-600">
-        {/* Logo */}
-        <div className="flex items-center">
-          <img src="/7.png" alt="EDIL Company Logo" className="h-12" />
-          <span className="ml-4 text-yellow-500 text-3xl font-bold">EDIL COMPANY</span>
+      <div className="container mx-auto px-6 py-5 flex justify-between items-center">
+        {/* Logo Animato */}
+        <div className="text-yellow-500 text-4xl font-extrabold tracking-wider animate-fade-slide-in">
+          EDILGES
         </div>
 
-        {/* Navigation */}
-        <nav className="flex space-x-10 text-white">
-          <Link href="/" className="hover:text-yellow-500 text-yellow-500 font-bold text-[18px] leading-[22px]">
-            Home
-          </Link>
-          <Link href="/chi-siamo" className="hover:text-yellow-500 font-bold text-[18px] leading-[22px]">
-            Chi siamo
-          </Link>
-          <Link href="/servizi" className="hover:text-yellow-500 font-bold text-[18px] leading-[22px]">
-            Servizi
-          </Link>
-          <Link href="/lavori-realizzati" className="hover:text-yellow-500 font-bold text-[18px] leading-[22px]">
-            Lavori realizzati
-          </Link>
-          <Link href="/lavora-con-noi" className="hover:text-yellow-500 font-bold text-[18px] leading-[22px]">
-            Lavora con noi
-          </Link>
-          <Link href="/contattaci" className="hover:text-yellow-500 font-bold text-[18px] leading-[22px]">
-            Contattaci
-          </Link>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-10 text-gray-700 text-lg font-semibold animate-slide-down">
+          {[
+            { href: "/", label: "Home" },
+            { href: "/chi-siamo", label: "Chi siamo" },
+            { href: "/servizi", label: "Servizi" },
+            { href: "/contattaci", label: "Contattaci" },
+          ].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="hover:text-yellow-500 transition-colors duration-300"
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <button
+            className="text-yellow-500 text-3xl"
+            onClick={() => setMenuOpen(true)}
+          >
+            <FontAwesomeIcon icon={faBars} />
+          </button>
+        </div>
+
         {/* Contact Button */}
-        <div className="border border-white rounded-md p-3 flex items-center justify-center">
-          <a href="tel:01119210639" className="text-white text-[18px] leading-[22px]">
-            📞
+        <div className="hidden md:flex relative group">
+          <a
+            href="tel:01119210639"
+            className="flex items-center justify-center w-12 h-12 bg-yellow-500 text-black rounded-full transition-transform duration-300 ease-in-out group-hover:scale-110 group-hover:rotate-12 shadow-lg"
+          >
+            <FontAwesomeIcon icon={faPhoneAlt} className="text-2xl" />
           </a>
         </div>
       </div>
+
+      {/* Mobile Fullscreen Menu */}
+      {menuOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex flex-col items-center justify-center text-white">
+          <button
+            className="absolute top-6 right-6 text-3xl text-white"
+            onClick={() => setMenuOpen(false)}
+          >
+            <FontAwesomeIcon icon={faTimes} />
+          </button>
+          <nav className="flex flex-col space-y-8 text-2xl font-bold text-center">
+            {[
+              { href: "/", label: "Home" },
+              { href: "/chi-siamo", label: "Chi siamo" },
+              { href: "/servizi", label: "Servizi" },
+              { href: "/contattaci", label: "Contattaci" },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="hover:text-yellow-500 transition duration-300"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

@@ -1,7 +1,7 @@
-
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Importa icone di navigazione
 
 // Import Swiper styles
 import 'swiper/css';
@@ -9,15 +9,45 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const Testimonials = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="bg-yellow-500 py-16 px-4">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <section
+      ref={sectionRef}
+      className="bg-yellow-500 py-16 px-4 overflow-hidden"
+    >
+      <div
+        className={`container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center transform transition-all duration-1000 ease-out ${
+          isVisible ? 'translate-x-0 opacity-100' : '-translate-x-16 opacity-0'
+        }`}
+      >
         {/* Left: Title */}
         <div>
           <h3 className="text-white uppercase text-[18px] font-manrope font-bold leading-[28px] mb-4">
-            testimonianze
+            Testimonianze
           </h3>
-          <h2 className="text-[40px] font-poppins font-semibold text-black leading-[40px] mb-6">
+          <h2 className="text-[40px] font-poppins font-semibold text-black leading-[45px] mb-6">
             Cosa dicono i<br /> nostri Clienti.
           </h2>
         </div>
@@ -28,65 +58,45 @@ const Testimonials = () => {
             modules={[Navigation, Pagination]}
             spaceBetween={30}
             slidesPerView={1}
-            navigation
+            navigation={{
+              prevEl: '.swiper-prev',
+              nextEl: '.swiper-next',
+            }}
             pagination={{ clickable: true }}
+            className="pb-12"
           >
+            {/* Slide 1 */}
             <SwiperSlide>
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <div className="flex items-center mb-4">
-                  <span className="text-yellow-500 text-2xl font-bold">★★★★★</span>
-                  <img
-                    src="/google-logo.png"
-                    alt="Google"
-                    className="ml-auto w-6 h-6"
-                  />
-                </div>
-                <p className="text-gray-700 mb-4">
-                  Ottima ditta con cui ho svolto i lavori di ristrutturazione del mio appartamento, tutti professionisti di eccellenza velocità di esecuzione e cura nei dettagli. Consiglio per chi vuole avere...
+              <div className="bg-white p-8 rounded-xl shadow-lg">
+                <blockquote className="italic text-gray-700 text-lg leading-relaxed mb-4">
+                  “Ottima ditta con cui ho svolto i lavori di ristrutturazione del mio appartamento. Professionisti eccellenti, velocità di esecuzione e cura nei dettagli.”
+                </blockquote>
+                <p className="text-right font-poppins font-semibold text-gray-900">
+                  — Luciano Caruso, <span className="text-gray-500 font-normal">31/07/2023</span>
                 </p>
-                <div className="flex items-center">
-                  <img
-                    src="/user-1.jpg" // Inserisci il percorso corretto della tua immagine
-                    alt="Luciano Caruso"
-                    className="w-10 h-10 rounded-full mr-3"
-                  />
-                  <div>
-                    <p className="text-black font-bold">Luciano Caruso</p>
-                    <p className="text-gray-500 text-sm">31/07/2023</p>
-                  </div>
-                </div>
               </div>
             </SwiperSlide>
 
+            {/* Slide 2 */}
             <SwiperSlide>
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <div className="flex items-center mb-4">
-                  <span className="text-yellow-500 text-2xl font-bold">★★★★★</span>
-                  <img
-                    src="/google-logo.png"
-                    alt="Google"
-                    className="ml-auto w-6 h-6"
-                  />
-                </div>
-                <p className="text-gray-700 mb-4">
-                  Super consigliata a tutti i miei colleghi amministratori di condomini. Sono in grado di gestire qualunque cantiere, grosso o piccolo, si sono da subito dimostrati organizzati in tutto....
+              <div className="bg-white p-8 rounded-xl shadow-lg">
+                <blockquote className="italic text-gray-700 text-lg leading-relaxed mb-4">
+                  “Super consigliata a tutti i miei colleghi amministratori di condomini. Organizzati, affidabili e capaci di gestire qualunque cantiere.”
+                </blockquote>
+                <p className="text-right font-poppins font-semibold text-gray-900">
+                  — Danilo Lacerenza, <span className="text-gray-500 font-normal">06/02/2023</span>
                 </p>
-                <div className="flex items-center">
-                  <img
-                    src="/user-2.jpg" // Inserisci il percorso corretto della tua immagine
-                    alt="Danilo Lacerenza"
-                    className="w-10 h-10 rounded-full mr-3"
-                  />
-                  <div>
-                    <p className="text-black font-bold">Danilo Lacerenza</p>
-                    <p className="text-gray-500 text-sm">06/02/2023</p>
-                  </div>
-                </div>
               </div>
             </SwiperSlide>
-
-            {/* Aggiungi altre testimonianze qui */}
           </Swiper>
+
+          {/* Frecce di navigazione personalizzate */}
+          <button className="swiper-prev absolute top-1/2 -left-6 transform -translate-y-1/2 text-white bg-black rounded-full p-3 shadow-lg hover:bg-yellow-500 transition duration-300">
+            <FaChevronLeft />
+          </button>
+          <button className="swiper-next absolute top-1/2 -right-6 transform -translate-y-1/2 text-white bg-black rounded-full p-3 shadow-lg hover:bg-yellow-500 transition duration-300">
+            <FaChevronRight />
+          </button>
         </div>
       </div>
     </section>
