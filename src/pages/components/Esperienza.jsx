@@ -1,61 +1,54 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 const Esperienza = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setIsVisible(true), 200); // Ritardo per attivare l'effetto
+    setTimeout(() => setIsVisible(true), 100); // Reduced delay for smoother effect
   }, []);
 
   return (
     <section
-      className="relative w-full py-16 bg-gray-900 text-white overflow-hidden"
+      className="relative w-full py-20 bg-gray-900 text-white overflow-hidden"
       style={{
-        backgroundImage: "url('/background-image.jpg')", // Inserisci l'immagine di sfondo
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundImage: `url('/background-image.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
       }}
     >
-      {/* Contenuto principale */}
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/50 z-0"></div>
+
       <div
-        className={`container mx-auto px-6 text-center transform transition-all duration-1000 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        className={`container mx-auto px-6 sm:px-8 text-center relative z-10 transform transition-all duration-700 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        {/* Titolo */}
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">
-          30 ANNI DI PASSIONE
+        {/* Title */}
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">
+          30 Anni di Passione
         </h2>
-        <div className="w-20 h-1 mx-auto bg-yellow-500 mb-8"></div>
+        <div className="w-16 h-1 mx-auto bg-amber-500 mb-8"></div>
 
-        {/* Testo contenuto */}
-        <p className="leading-relaxed text-lg md:text-xl max-w-4xl mx-auto">
-          La nostra azienda <strong>Edilges</strong> è sinonimo di eccellenza e affidabilità nel
-          campo delle <strong className="text-yellow-500">ristrutturazioni</strong> e delle costruzioni. Con
-          un team di esperti qualificati, ci dedichiamo a offrire soluzioni personalizzate per
-          ogni tipo di esigenza edilizia, combinando <strong>qualità</strong>, <strong>puntualità</strong> e{" "}
-          <strong>innovazione</strong>.
+        {/* Content */}
+        <p className="text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed max-w-4xl mx-auto">
+          <strong className="font-semibold">Edilges</strong> rappresenta eccellenza e affidabilità nelle{' '}
+          <strong className="text-amber-500">ristrutturazioni</strong> e costruzioni. Con un team qualificato, offriamo soluzioni personalizzate che combinano{' '}
+          <strong>qualità</strong>, <strong>puntualità</strong> e <strong>innovazione</strong>.
           <br />
-          Nel corso degli anni, abbiamo realizzato progetti su misura per clienti privati e
-          commerciali, garantendo risultati che rispecchiano le aspettative e rispettando
-          tutte le normative vigenti in materia di sicurezza e sostenibilità.
+          Realizziamo progetti per clienti privati e commerciali, rispettando normative di sicurezza e sostenibilità, con attenzione ai dettagli e materiali di alta qualità.
           <br />
-          Che si tratti di ristrutturazioni interne, esterne o di nuove costruzioni, ci
-          impegniamo a ridurre i tempi e i costi con un'attenzione particolare al dettaglio
-          e alla qualità dei materiali utilizzati.
-          <br />
-          Affidati a noi per trasformare il tuo spazio in un ambiente funzionale,
-          sicuro e all'avanguardia.
+          Affidati a noi per trasformare il tuo spazio in un ambiente funzionale e moderno.
         </p>
 
-        {/* Bottone CTA */}
-        <div className="mt-8">
+        {/* CTA Button */}
+        <div className="mt-10">
           <a
-            href="#contattaci"
-            className="inline-block bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-md shadow-lg transition-transform duration-300 transform hover:scale-105"
+            href="/contattaci"
+            className="inline-block bg-amber-500 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-amber-600 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
           >
-            CONTATTACI
+            Contattaci Ora
           </a>
         </div>
       </div>

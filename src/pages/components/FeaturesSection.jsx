@@ -11,87 +11,101 @@ const FeaturesSection = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true);
-            observer.disconnect(); // Disconnette l'osservatore dopo aver attivato l'effetto
+            observer.disconnect();
           }
         });
       },
-      { threshold: 0.2 } // Attiva quando il 20% della sezione è visibile
+      { threshold: 0.3 } // Increased to 30% for smoother trigger
     );
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect(); // Pulizia dell'osservatore
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#262626] text-white py-16">
-      <div className="container mx-auto px-4">
+    <section ref={sectionRef} className="bg-gray-900 text-white py-20">
+      <div className="container mx-auto px-6 sm:px-8">
+        {/* Section Title */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Perché Sceglierci
+          </h2>
+          <p className="mt-4 text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
+            Scopri i valori che guidano il nostro lavoro e ci distinguono nel settore edile.
+          </p>
+        </div>
+
+        {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Feature 1 */}
           <div
-            className={`flex flex-col items-start text-left transform transition-all duration-1000 ease-out ${
-              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+            className={`group bg-gray-800 rounded-xl p-6 shadow-lg transform transition-all duration-700 ease-out hover:shadow-xl hover:-translate-y-2 ${
+              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
-            <div className="flex items-center">
+            <div className="flex items-center mb-4">
               <Image
                 src="/icon-1.png"
                 alt="Trasparenza"
-                width={60}
-                height={60}
+                width={48}
+                height={48}
+                className="transition-transform duration-300 group-hover:scale-110"
               />
-              <h3 className="text-white text-[18px] font-poppins font-semibold leading-[45px] ml-4">
+              <h3 className="text-white text-xl font-semibold ml-4">
                 Trasparenza
               </h3>
             </div>
-            <p className="text-[15px] text-[#aaaaaa] font-lato leading-[28px] mt-2">
+            <p className="text-gray-300 text-sm leading-relaxed">
               La trasparenza di Edilges si riflette nell’apertura totale verso clienti, fornitori e collaboratori, garantendo fiducia e chiarezza.
             </p>
           </div>
 
           {/* Feature 2 */}
           <div
-            className={`flex flex-col items-start text-left transform transition-all duration-1000 ease-out ${
-              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+            className={`group bg-gray-800 rounded-xl p-6 shadow-lg transform transition-all duration-700 ease-out hover:shadow-xl hover:-translate-y-2 ${
+              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
-            <div className="flex items-center">
+            <div className="flex items-center mb-4">
               <Image
                 src="/icon-2.png"
                 alt="Esperienza"
-                width={60}
-                height={60}
+                width={48}
+                height={48}
+                className="transition-transform duration-300 group-hover:scale-110"
               />
-              <h3 className="text-white text-[18px] font-poppins font-semibold leading-[45px] ml-4">
+              <h3 className="text-white text-xl font-semibold ml-4">
                 Esperienza
               </h3>
             </div>
-            <p className="text-[15px] text-[#aaaaaa] font-lato leading-[28px] mt-2">
-              Da oltre 20 anni operiamo sul patrimonio edilizio esistente, perseguendo una filosofia conservativa e adottando tecniche innovative.
+            <p className="text-gray-300 text-sm leading-relaxed">
+              Da oltre 20 anni operiamo nel settore edile, adottando tecniche innovative e una filosofia conservativa.
             </p>
           </div>
 
           {/* Feature 3 */}
           <div
-            className={`flex flex-col items-start text-left transform transition-all duration-1000 ease-out ${
-              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+            className={`group bg-gray-800 rounded-xl p-6 shadow-lg transform transition-all duration-700 ease-out hover:shadow-xl hover:-translate-y-2 ${
+              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
-            <div className="flex items-center">
+            <div className="flex items-center mb-4">
               <Image
                 src="/icon-3.png"
                 alt="Tempestività"
-                width={60}
-                height={60}
+                width={48}
+                height={48}
+                className="transition-transform duration-300 group-hover:scale-110"
               />
-              <h3 className="text-white text-[18px] font-poppins font-semibold leading-[45px] ml-4">
+              <h3 className="text-white text-xl font-semibold ml-4">
                 Tempestività
               </h3>
             </div>
-            <p className="text-[15px] text-[#aaaaaa] font-lato leading-[28px] mt-2">
-              EDILGES si distingue per la sua tempestività nell’esecuzione dei lavori, garantendo risultati rapidi senza compromettere la qualità.
+            <p className="text-gray-300 text-sm leading-relaxed">
+              EDILGES garantisce lavori rapidi e di qualità, rispettando i tempi senza compromessi.
             </p>
           </div>
         </div>

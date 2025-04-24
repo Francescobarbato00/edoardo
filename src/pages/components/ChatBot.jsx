@@ -5,7 +5,11 @@ const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userMessage, setUserMessage] = useState('');
   const [messages, setMessages] = useState([
-    { from: 'bot', text: 'Ciao! Come posso aiutarti oggi?', time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) },
+    {
+      from: 'bot',
+      text: 'Ciao! Come posso aiutarti oggi?',
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    },
   ]);
 
   const chatEndRef = useRef(null);
@@ -23,18 +27,25 @@ const ChatBot = () => {
     setTimeout(() => {
       let botReply = 'Grazie! Al momento siamo in fase di sviluppo.';
       if (userMsg.toLowerCase().includes('chi siamo')) {
-        botReply = 'Siamo Edilges, un team dedicato all\'innovazione e ai servizi di costruzione di alta qualità.';
+        botReply =
+          'Siamo Edilges, un team dedicato all’innovazione e ai servizi di costruzione di alta qualità.';
       } else if (userMsg.toLowerCase().includes('cosa facciamo')) {
-        botReply = 'Ci occupiamo di edilizia residenziale e commerciale, offrendo ristrutturazioni e nuove costruzioni.';
+        botReply =
+          'Ci occupiamo di edilizia residenziale e commerciale, offrendo ristrutturazioni e nuove costruzioni.';
       } else if (userMsg.toLowerCase().includes('contatti')) {
-        botReply = 'Puoi contattarci al numero 013 123 12 123 o tramite email all\'indirizzo info@edilges.it.';
+        botReply =
+          'Puoi contattarci al numero 013 123 12 123 o tramite email all’indirizzo info@edilges.it.';
       }
 
       setMessages((prevMessages) => [
         ...prevMessages,
-        { from: 'bot', text: botReply, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) },
+        {
+          from: 'bot',
+          text: botReply,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        },
       ]);
-    }, 1000);
+    }, 800); // Reduced delay for faster response
   };
 
   useEffect(() => {
@@ -43,63 +54,68 @@ const ChatBot = () => {
 
   return (
     <>
-      {/* Bottone di apertura chat */}
+      {/* Floating Chat Button */}
       <div
-        className="fixed bottom-6 right-6 bg-yellow-500 text-white p-4 rounded-full shadow-lg cursor-pointer hover:scale-110 transition-transform duration-300 z-50"
+        className="fixed bottom-6 right-6 bg-amber-500 text-white p-4 rounded-full shadow-lg cursor-pointer hover:bg-amber-600 transition-all duration-300 hover:scale-110 z-50"
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? 'Chiudi chatbot' : 'Apri chatbot'}
       >
-        {isOpen ? <FaTimes size={22} /> : <FaRobot size={22} />}
+        {isOpen ? <FaTimes size={20} /> : <FaRobot size={20} />}
       </div>
 
-      {/* Overlay scuro */}
+      {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          className="fixed inset-0 bg-black bg-opacity-60 z-40 transition-opacity duration-300"
           onClick={() => setIsOpen(false)}
         ></div>
       )}
 
-      {/* Finestra della Chat */}
+      {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-10 right-4 md:right-10 w-[90%] md:w-96 h-[75vh] md:h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col z-50 max-w-md">
-          {/* Header della Chat */}
-          <div className="bg-yellow-500 text-white py-4 px-6 flex justify-between items-center rounded-t-2xl">
-            <h3 className="text-lg font-semibold">ChatBot Edilges</h3>
-            <button className="hover:text-gray-200 transition" onClick={() => setIsOpen(false)}>
-              <FaTimes size={18} />
+        <div
+          className="fixed bottom-6 right-4 sm:bottom-10 sm:right-6 w-[90%] max-w-sm sm:max-w-md h-[80vh] sm:h-[520px] bg-white rounded-xl shadow-2xl flex flex-col z-50 animate-slide-up"
+        >
+          {/* Chat Header */}
+          <div className="bg-amber-500 text-white py-3 px-5 flex justify-between items-center rounded-t-xl">
+            <h3 className="text-base sm:text-lg font-semibold tracking-tight">Edilges ChatBot</h3>
+            <button
+              className="text-white hover:text-gray-200 transition-colors duration-200"
+              onClick={() => setIsOpen(false)}
+              aria-label="Chiudi chat"
+            >
+              <FaTimes size={16} />
             </button>
           </div>
 
-          {/* Area dei messaggi */}
-          <div className="flex-1 p-4 overflow-y-auto bg-gray-50 space-y-3 custom-scrollbar">
+          {/* Messages Area */}
+          <div className="flex-1 p-4 bg-gray-100 overflow-y-auto space-y-4 custom-scrollbar">
             {messages.map((msg, index) => (
               <div
                 key={index}
-                className={`flex flex-col ${
-                  msg.from === 'user' ? 'items-end' : 'items-start'
-                }`}
+                className={`flex flex-col ${msg.from === 'user' ? 'items-end' : 'items-start'}`}
               >
                 <div
-                  className={`px-4 py-2 max-w-[80%] rounded-lg text-sm shadow ${
+                  className={`px-3 py-2 max-w-[75%] rounded-lg text-sm sm:text-base shadow-md transition-all duration-300 ${
                     msg.from === 'user'
-                      ? 'bg-yellow-500 text-white'
-                      : 'bg-white text-gray-800 border border-gray-300'
+                      ? 'bg-amber-500 text-white'
+                      : 'bg-white text-gray-900 border border-gray-200'
                   }`}
                 >
                   {msg.text}
                 </div>
-                <div className="text-gray-400 text-xs mt-1">{msg.time}</div>
+                <div className="text-gray-500 text-xs mt-1">{msg.time}</div>
               </div>
             ))}
             <div ref={chatEndRef} />
           </div>
 
-          {/* Pulsanti di domande preimpostate */}
-          <div className="p-3 bg-white flex flex-wrap gap-2 justify-center border-t">
+          {/* Preset Question Buttons */}
+          <div className="p-3 bg-white flex flex-wrap gap-2 justify-center border-t border-gray-200">
             {['Chi siamo', 'Cosa facciamo', 'Contatti'].map((question, index) => (
               <button
                 key={index}
-                className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs px-3 py-2 rounded-lg transition duration-300"
+                className="bg-gray-100 hover:bg-amber-100 text-gray-900 text-xs sm:text-sm px-3 py-1.5 rounded-full transition-all duration-300 hover:text-amber-600"
                 onClick={() => handleSendMessage(question)}
               >
                 {question}
@@ -107,21 +123,23 @@ const ChatBot = () => {
             ))}
           </div>
 
-          {/* Input dei messaggi */}
-          <div className="p-3 bg-white border-t border-gray-200 flex items-center rounded-b-2xl">
+          {/* Message Input */}
+          <div className="p-3 bg-white border-t border-gray-200 flex items-center rounded-b-xl">
             <input
               type="text"
-              className="flex-1 p-3 border border-gray-300 rounded-full outline-none text-gray-700 focus:ring-2 focus:ring-yellow-500"
+              className="flex-1 p-2 sm:p-3 border border-gray-300 rounded-full outline-none text-gray-900 text-sm sm:text-base focus:ring-2 focus:ring-amber-500 transition-all duration-200"
               placeholder="Scrivi un messaggio..."
               value={userMessage}
               onChange={(e) => setUserMessage(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+              aria-label="Inserisci il tuo messaggio"
             />
             <button
               onClick={() => handleSendMessage()}
-              className="ml-3 bg-yellow-500 hover:bg-yellow-600 text-white p-3 rounded-full shadow-md transition-transform duration-300 transform hover:scale-110"
+              className="ml-2 bg-amber-500 hover:bg-amber-600 text-white p-2.5 rounded-full shadow-md transition-all duration-300 hover:scale-105"
+              aria-label="Invia messaggio"
             >
-              <FaPaperPlane size={18} />
+              <FaPaperPlane size={16} />
             </button>
           </div>
         </div>

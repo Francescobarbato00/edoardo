@@ -15,7 +15,7 @@ const CertificationsSection = () => {
           }
         });
       },
-      { threshold: 0.2 } // L'animazione si attiva quando il 20% della sezione è visibile
+      { threshold: 0.3 } // Increased to 30% for smoother trigger
     );
 
     if (sectionRef.current) {
@@ -26,58 +26,72 @@ const CertificationsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-yellow-500 py-16 overflow-hidden">
-      <div className="container mx-auto flex flex-col space-y-12 md:space-y-0 md:flex-row md:space-x-12 justify-around px-4">
-        {/* First Block: ISO */}
-        <div
-          className={`flex flex-col md:flex-row items-center md:items-start transform transition-all duration-1000 ease-out ${
-            isVisible ? 'translate-x-0 opacity-100' : '-translate-x-16 opacity-0'
-          }`}
-        >
-          {/* ISO Logo */}
-          <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
-            <Image
-              src="/iso.png" // Percorso del logo ISO
-              alt="ISO 9001 Logo"
-              width={150}
-              height={150}
-              className="w-24 h-24 md:w-36 md:h-36"
-            />
-          </div>
-          {/* ISO Text */}
-          <div className="max-w-md">
-            <p className="text-gray-900 text-lg text-center md:text-left">
-              La norma ISO 9001 definisce i requisiti minimi che il Sistema di Gestione per la
-              Qualità di un’organizzazione deve dimostrare di soddisfare per garantire il livello di
-              qualità di prodotto e servizio che dichiara di possedere con sé stessa e con il
-              mercato.
-            </p>
-          </div>
+    <section ref={sectionRef} className="bg-amber-500 py-20 overflow-hidden">
+      <div className="container mx-auto px-6 sm:px-8">
+        {/* Section Title */}
+        <div className="text-center mb-12">
+          <h2
+            className={`text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight transform transition-all duration-700 ease-out ${
+              isVisible ? 'translate-y-0 opacity-100' : '-translate-y-6 opacity-0'
+            }`}
+          >
+            Le Nostre Certificazioni
+          </h2>
+          <p
+            className={`mt-4 text-gray-800 text-base sm:text-lg max-w-2xl mx-auto transform transition-all duration-700 ease-out delay-100 ${
+              isVisible ? 'translate-y-0 opacity-100' : '-translate-y-6 opacity-0'
+            }`}
+          >
+            Garantiamo qualità e professionalità attraverso certificazioni riconosciute a livello nazionale e internazionale.
+          </p>
         </div>
 
-        {/* Second Block: SOA */}
-        <div
-          className={`flex flex-col md:flex-row items-center md:items-start transform transition-all duration-1000 ease-out ${
-            isVisible ? 'translate-x-0 opacity-100' : 'translate-x-16 opacity-0'
-          }`}
-        >
-          {/* SOA Logo */}
-          <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
-            <Image
-              src="/soa.png" // Percorso del logo SOA
-              alt="SOA Logo"
-              width={150}
-              height={150}
-              className="w-24 h-24 md:w-36 md:h-36"
-            />
+        {/* Certifications Grid */}
+        <div className="flex flex-col space-y-12 md:space-y-0 md:flex-row md:space-x-12 justify-center">
+          {/* ISO Block */}
+          <div
+            className={`group flex flex-col md:flex-row items-center md:items-start bg-white rounded-xl p-6 shadow-lg transform transition-all duration-700 ease-out hover:shadow-xl hover:-translate-y-2 ${
+              isVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
+            }`}
+          >
+            <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+              <Image
+                src="/iso.png"
+                alt="Certificazione ISO 9001"
+                width={120}
+                height={120}
+                className="w-20 h-20 md:w-28 md:h-28 transition-transform duration-300 group-hover:scale-110"
+              />
+            </div>
+            <div className="max-w-md text-center md:text-left">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">ISO 9001</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                La norma ISO 9001 garantisce un Sistema di Gestione per la Qualità che assicura elevati standard di prodotto e servizio.
+              </p>
+            </div>
           </div>
-          {/* SOA Text */}
-          <div className="max-w-md">
-            <p className="text-gray-900 text-lg text-center md:text-left">
-              La certificazione SOA è un riconoscimento di rilievo pubblico che attesta la capacità
-              dell’impresa di eseguire, direttamente o in subappalto, opere pubbliche di rilevante
-              importanza.
-            </p>
+
+          {/* SOA Block */}
+          <div
+            className={`group flex flex-col md:flex-row items-center md:items-start bg-white rounded-xl p-6 shadow-lg transform transition-all duration-700 ease-out hover:shadow-xl hover:-translate-y-2 ${
+              isVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
+            }`}
+          >
+            <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+              <Image
+                src="/soa.png"
+                alt="Certificazione SOA"
+                width={120}
+                height={120}
+                className="w-20 h-20 md:w-28 md:h-28 transition-transform duration-300 group-hover:scale-110"
+              />
+            </div>
+            <div className="max-w-md text-center md:text-left">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">SOA</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                La certificazione SOA attesta la nostra capacità di eseguire opere pubbliche di rilevanza, con professionalità e competenza.
+              </p>
+            </div>
           </div>
         </div>
       </div>

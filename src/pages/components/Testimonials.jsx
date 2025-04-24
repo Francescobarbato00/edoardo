@@ -22,7 +22,7 @@ const Testimonials = () => {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.3 } // Increased to 30% for smoother trigger
     );
 
     if (sectionRef.current) {
@@ -33,22 +33,27 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="bg-yellow-500 py-12 md:py-16 px-4 overflow-hidden"
-    >
+    <section ref={sectionRef} className="bg-amber-500 py-20 px-6 sm:px-8 overflow-hidden">
       <div
-        className={`container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center transform transition-all duration-1000 ease-out ${
-          isVisible ? 'translate-x-0 opacity-100' : '-translate-x-16 opacity-0'
+        className={`container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center transform transition-all duration-700 ease-out ${
+          isVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
         }`}
       >
         {/* Left: Title */}
         <div className="text-center md:text-left">
-          <h3 className="text-white uppercase text-sm md:text-[18px] font-manrope font-bold leading-[28px] mb-2 md:mb-4">
+          <h3
+            className={`text-white uppercase text-xs font-semibold tracking-widest mb-3 transform transition-all duration-700 ease-out ${
+              isVisible ? 'translate-y-0 opacity-100' : '-translate-y-6 opacity-0'
+            }`}
+          >
             Testimonianze
           </h3>
-          <h2 className="text-3xl md:text-[40px] font-poppins font-semibold text-black leading-[35px] md:leading-[45px] mb-4 md:mb-6">
-            Cosa dicono i<br /> nostri Clienti.
+          <h2
+            className={`text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6 transform transition-all duration-700 ease-out delay-100 ${
+              isVisible ? 'translate-y-0 opacity-100' : '-translate-y-6 opacity-0'
+            }`}
+          >
+            Cosa Dicono i Nostri Clienti
           </h2>
         </div>
 
@@ -63,39 +68,48 @@ const Testimonials = () => {
               nextEl: '.swiper-next',
             }}
             pagination={{ clickable: true }}
-            className="pb-8 md:pb-12"
+            className="pb-10"
           >
-            {/* Slide 1 */}
-            <SwiperSlide>
-              <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg">
-                <blockquote className="italic text-gray-700 text-base md:text-lg leading-relaxed mb-4">
-                  “Ottima ditta con cui ho svolto i lavori di ristrutturazione del mio appartamento. Professionisti eccellenti, velocità di esecuzione e cura nei dettagli.”
-                </blockquote>
-                <p className="text-right font-poppins font-semibold text-gray-900 text-sm md:text-base">
-                  — Luciano Caruso, <span className="text-gray-500 font-normal">31/07/2023</span>
-                </p>
-              </div>
-            </SwiperSlide>
-
-            {/* Slide 2 */}
-            <SwiperSlide>
-              <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg">
-                <blockquote className="italic text-gray-700 text-base md:text-lg leading-relaxed mb-4">
-                  “Super consigliata a tutti i miei colleghi amministratori di condomini. Organizzati, affidabili e capaci di gestire qualunque cantiere.”
-                </blockquote>
-                <p className="text-right font-poppins font-semibold text-gray-900 text-sm md:text-base">
-                  — Danilo Lacerenza, <span className="text-gray-500 font-normal">06/02/2023</span>
-                </p>
-              </div>
-            </SwiperSlide>
+            {[
+              {
+                quote:
+                  'Ottima ditta per la ristrutturazione del mio appartamento. Professionisti eccellenti, veloci e attenti ai dettagli.',
+                author: 'Luciano Caruso',
+                date: '31/07/2023',
+              },
+              {
+                quote:
+                  'Consigliatissima per amministratori di condomini. Organizzati, affidabili e capaci di gestire qualsiasi cantiere.',
+                author: 'Danilo Lacerenza',
+                date: '06/02/2023',
+              },
+            ].map((testimonial, index) => (
+              <SwiperSlide key={index}>
+                <div className="group bg-white p-6 md:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                  <blockquote className="italic text-gray-600 text-sm md:text-base leading-relaxed mb-4">
+                    “{testimonial.quote}”
+                  </blockquote>
+                  <p className="text-right font-semibold text-gray-900 text-sm md:text-base">
+                    — {testimonial.author},{' '}
+                    <span className="text-gray-500 font-normal">{testimonial.date}</span>
+                  </p>
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
 
-          {/* Frecce di navigazione personalizzate */}
-          <button className="swiper-prev absolute top-[90%] md:top-1/2 left-4 md:-left-6 transform -translate-y-1/2 text-white bg-black rounded-full p-2 md:p-3 shadow-lg hover:bg-yellow-500 transition duration-300">
-            <FaChevronLeft size={18} />
+          {/* Custom Navigation Arrows */}
+          <button
+            className="swiper-prev absolute top-1/2 left-0 md:-left-12 transform -translate-y-1/2 bg-amber-600 text-white rounded-full p-3 shadow-lg hover:bg-amber-700 transition-all duration-300 hover:scale-105"
+            aria-label="Testimonianza precedente"
+          >
+            <FaChevronLeft size={16} />
           </button>
-          <button className="swiper-next absolute top-[90%] md:top-1/2 right-4 md:-right-6 transform -translate-y-1/2 text-white bg-black rounded-full p-2 md:p-3 shadow-lg hover:bg-yellow-500 transition duration-300">
-            <FaChevronRight size={18} />
+          <button
+            className="swiper-next absolute top-1/2 right-0 md:-right-12 transform -translate-y-1/2 bg-amber-600 text-white rounded-full p-3 shadow-lg hover:bg-amber-700 transition-all duration-300 hover:scale-105"
+            aria-label="Testimonianza successiva"
+          >
+            <FaChevronRight size={16} />
           </button>
         </div>
       </div>
